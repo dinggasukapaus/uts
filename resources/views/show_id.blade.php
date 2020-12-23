@@ -20,7 +20,7 @@
                                     <div class="vl-post-share">
                                     </div>
                                     <div class="vl-post-tags">
-                                        <a href="/page/{{ $data['id'] }}/edit" rel="tag">Edit</a>
+                                        <a href="{{ url('/page/'.$data['id'].'/edit') }}" rel="tag">Edit</a>
                                         <a href="/" rel="tag">Kembali</a>
 
                                     </div>
