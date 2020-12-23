@@ -21,7 +21,7 @@
                                     </div>
                                     <div class="vl-post-tags">
                                         <a href="{{ url('/page/'.$data['id'].'/edit') }}" rel="tag">Edit</a>
-                                        <a href="/" rel="tag">Kembali</a>
+                                        <a href="{{ url('/page') }}" rel="tag">Kembali</a>
 
                                     </div>
                                 </div>
