@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">content</label>
-          <textarea name="content" id="example" value="" cols="30" rows="10"></textarea>
+          <textarea name="content"  value="" cols="30" rows="10"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
