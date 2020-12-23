@@ -6,22 +6,7 @@
 
 
     @for ($item = 0; $item < count($data); $item++)
-    {{-- <br>
 
-        <div class="card w-75">
-            <div class="card-header">
-
-                <i class="fa fa-user"></i>author {{$data[$item]['author']}}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{$data[$item]['title']}}</h5>
-                <p class="card-text">{{ substr(strip_tags($data[$item]['content']), 0, 100) }}
-                    {{ strlen(strip_tags($data[$item]['content'])) > 50 ? "..." : "" }}</p>
-
-                <a href="{{route('page.show',$data[$item]['id'])}}" class="btn btn-primary">readmore</a>
-
-            </div>
-        </div> --}}
 
         <div class="vl-postlist-holder">
             <div class="vl-postlist vl-postlist-standard cubeportfolio clearfix">
@@ -44,8 +29,14 @@
                                 {!! strlen(strip_tags($data[$item]['content'])) > 50 ? "..." : "" !!}
                             </div>
                             <div class="vl-post-footer">
-                                <a href="{{route('page.show',$data[$item]['id'])}}" class="vl-btn vl-btn-primary">Read More</a>
-                                <input class="vl-btn vl-btn-danger" type="submit" form="formDelete" value="delete">
+                                <a href="{{url('/page/'.$data[$item]['id'])}}" class="vl-btn vl-btn-primary">Read More</a>
+
+                                <form action="{{url('/page/'.$data[$item]['id'])}}" method="post" >
+                                    @method('delete')
+                                    @csrf
+                                    <input type="hidden" name="id" id="" value="{{ $data[$item]['id'] }}">
+                                    <input class="vl-btn vl-btn-danger" type="submit" value="delete">
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -55,8 +46,8 @@
             </div>
         </div>
         <br>
-        <form method="POST" id="formDelete" action="{{route('page.destroy',$data[$item]['id'])}}">
-            @method('delete');
+        <form method="POST" id="formDelete" action="{{url('/page/'.$data[$item]['id'])}}">
+            @method('delete')
             @csrf
 
             </form>

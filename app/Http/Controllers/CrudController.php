@@ -166,16 +166,35 @@ class CrudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+        // return $id;
+        // return $request;
         $file = Storage::get("public/data_blog.json");
-        $data = json_decode($file, true);
+        $data = json_decode($file);
 
-        unset($data[$id - 1]);
+        $index =0;
+        foreach ($data as $key) {
+            // return $key->id;
+            if ($key->id == $request->id) {
+                unset($data[$index]);
+            }
+            $index++;
+        }   
 
-        $file = Storage::put("public/data_blog.json", $data);
-        $data = json_encode($data, JSON_PRETTY_PRINT);
+        // $file = Storage::put("public/data_blog.json", $data);
+        // $data = json_encode($data, JSON_PRETTY_PRINT);
 
-        return redirect('/');
+        try {
+            $save = json_encode(array_values($data), JSON_PRETTY_PRINT);
+            file_put_contents(storage_path() . '/app/public/data_blog.json', stripslashes($save));
+            $path = storage_path() . '/app/public/data_blog.json';
+
+            return redirect('/');
+        } catch (\Throwable $th) {
+            return $th;
+        }
+
+        // return redirect('/');
     }
 }
