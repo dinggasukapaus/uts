@@ -40,8 +40,8 @@
                             </div>
                             <h3 class="vl-post-title"><a href="blog-post-single.html">{{$data[$item]['title']}}</a></h3>
                             <div class="vl-post-excerpt">
-                                {{ substr(strip_tags($data[$item]['content']), 0, 100) }}
-                                {{ strlen(strip_tags($data[$item]['content'])) > 50 ? "..." : "" }}
+                                {!! substr(strip_tags($data[$item]['content']), 0, 100) !!}
+                                {!! strlen(strip_tags($data[$item]['content'])) > 50 ? "..." : "" !!}
                             </div>
                             <div class="vl-post-footer">
                                 <a href="{{route('page.show',$data[$item]['id'])}}" class="vl-btn vl-btn-primary">Read More</a>
